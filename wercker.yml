@@ -49,7 +49,7 @@ build:
             dotnet run 
     - script:
         name: copy binary
-        cwd: IQVia.Tweets/test/IQVia.TweetsService.Tests/
+        cwd: IQVia.Tweets/src/IQVia.TweetsWeb/
         code: |
           cp -r . $WERCKER_OUTPUT_DIR/app 
 deploy:
