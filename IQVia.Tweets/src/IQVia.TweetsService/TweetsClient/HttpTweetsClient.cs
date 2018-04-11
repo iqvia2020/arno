@@ -55,7 +55,7 @@ namespace IQvia.TweetsService.TweetsClient
                             newTweets.ForEach(newTweet =>
                             {
                                 if (tweets.Count == 0) tweets.AddRange(newTweets);
-                                else if (tweets.Exists(existingTweet => !String.Equals(existingTweet.Id, newTweet.Id, StringComparison.OrdinalIgnoreCase)))
+                                else if (!tweets.Exists(existingTweet => String.Equals(existingTweet.Id, newTweet.Id, StringComparison.OrdinalIgnoreCase)))
                                 {
                                     tweets.Add(newTweet);
                                 }
