@@ -10,7 +10,7 @@ using System.Text;
 using Xunit;
 
 
-namespace Q.TeamService.Tests.Integration
+namespace IQVia.TweetsService.Tests.Integration
 {
     public class TweetsIntegrationTests
     {
