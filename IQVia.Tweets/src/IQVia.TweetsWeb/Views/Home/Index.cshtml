@@ -1,0 +1,54 @@
+﻿<html>
+<head>
+    <title>Tweets</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    @*<link rel="stylesheet" href="/css/tweets.min.css">*@
+    <script src="/js/tweets.min.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+            table tr:nth-child(odd) {
+                background-color: #f2f2f2;
+            }
+
+            table tr:nth-child(even) {
+                background-color: #ffffff;
+            }
+    </style>
+</head>
+    <body>
+        <h2>Tweets</h2>
+        <div ng-app="myApp" ng-controller="tweetsCtrl">
+         <table>
+                <tr>
+                    <th></th>
+                    <th>Id</th>
+                    <th>Stamp</th>.
+                    <th>Text</th>
+                </tr>
+
+                <tr ng-repeat="tweet in tweets">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ tweet.id }}</td>
+                    <td>{{ tweet.stamp }}</td>
+                    <td>{{ tweet.text }}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <script>
+            var app = angular.module('myApp', []);
+               app.controller('tweetsCtrl', function ($scope, $http) {
+                   $http.get("/Tweets?startDate=1/1/2016 12:00:00 AM&endDate=12/31/2017 11:59:59 PM")
+                    .then(function (response) {
+                        $scope.tweets = response.data;
+                    });
+            });
+        </script>
+    </body>
+</html>

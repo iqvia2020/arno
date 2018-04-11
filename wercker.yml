@@ -8,6 +8,46 @@ build:
         code: |
           dotnet restore
     - script:
+        name: build
+        cwd:  IQVia.Tweets/src/IQVia.TweetsWeb/
+        code: |
+          dotnet build  
+    - script:
+        name: publish
+        cwd:  IQVia.Tweets/src/IQVia.TweetsWeb/
+        code: |
+          dotnet publish -o publish
+    - script:
+        name: test-restore
+        cwd:  IQVia.Tweets/test/IQVia.TweetsService.Tests/
+        code: |
+           dotnet restore
+    - script:
+        name: test-build
+        cwd:  IQVia.Tweets/test/IQVia.TweetsService.Tests/
+        code: |
+          dotnet build
+    - script:
+        name: test-run
+        cwd:  IQVia.Tweets/test/IQVia.TweetsService.Tests/
+        code: |
+          dotnet test  
+    - script:
+        name: integrationtest-restore
+        cwd: IQVia.Tweets/test/IQVia.TweetsService.Tests.Integration/
+        code: |
+          dotnet restore  
+    - script:
+        name: integrationtest-build
+        cwd: IQVia.Tweets/test/IQVia.TweetsService.Tests.Integration/
+        code: |
+            dotnet build  
+    - script:
+        name: integrationtest-run
+        cwd: IQVia.Tweets/test/IQVia.TweetsService.Tests.Integration/
+        code: |
+            dotnet run 
+    - script:
         name: copy binary
         cwd: IQVia.Tweets/test/IQVia.TweetsService.Tests/
         code: |
