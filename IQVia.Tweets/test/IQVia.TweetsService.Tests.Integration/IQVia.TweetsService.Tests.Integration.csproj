@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IQVia.TweetsService\IQvia.TweetsService.csproj" />
+    <ProjectReference Include="..\..\src\IQVia.TweetsWeb\IQVia.TweetsWeb.csproj" />
   </ItemGroup>
 
   <ItemGroup>

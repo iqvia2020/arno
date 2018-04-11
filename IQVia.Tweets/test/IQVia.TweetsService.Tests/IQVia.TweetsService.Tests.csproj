@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IQVia.TweetsService\IQvia.TweetsService.csproj" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <ProjectReference Include="..\..\src\IQVia.TweetsWeb\IQVia.TweetsWeb.csproj" />
   </ItemGroup>
 
 </Project>

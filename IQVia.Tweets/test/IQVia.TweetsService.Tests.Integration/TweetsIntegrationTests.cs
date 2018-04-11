@@ -1,5 +1,7 @@
-using IQvia.TweetsService;
-using IQvia.TweetsService.Models;
+//using IQvia.TweetsService;
+//using IQvia.TweetsService.Models;
+using IQVia.TweetsWeb;
+using IQVia.TweetsWeb.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;

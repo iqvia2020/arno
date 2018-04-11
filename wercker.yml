@@ -4,17 +4,17 @@ build:
   steps: 
     - script:
         name: restore
-        cwd:  IQVia.Tweets/src/IQVia.TweetsService/
+        cwd:  IQVia.Tweets/src/IQVia.TweetsWeb/
         code: |
           dotnet restore
     - script:
         name: build
-        cwd:  IQVia.Tweets/src/IQVia.TweetsService/
+        cwd:  IQVia.Tweets/src/IQVia.TweetsWeb/
         code: |
           dotnet build  
     - script:
         name: publish
-        cwd:  IQVia.Tweets/src/IQVia.TweetsService/
+        cwd:  IQVia.Tweets/src/IQVia.TweetsWeb/
         code: |
           dotnet publish -o publish
     - script:
