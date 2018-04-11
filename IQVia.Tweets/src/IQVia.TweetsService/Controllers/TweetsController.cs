@@ -1,5 +1,6 @@
 using IQvia.TweetsService.TweetsClient;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace IQvia.TweetsService
@@ -14,9 +15,9 @@ namespace IQvia.TweetsService
         }
 
         [HttpGet]
-        public async virtual Task<IActionResult> GetAllTweets()
+        public async virtual Task<IActionResult> GetAllTweets(DateTime startDate, DateTime endDate)
         {
-           return this.Ok(await tweetClient.List());
+           return this.Ok(await tweetClient.List(startDate,endDate));
         }
     }
 }

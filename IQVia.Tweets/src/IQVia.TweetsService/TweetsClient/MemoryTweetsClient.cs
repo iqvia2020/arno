@@ -13,7 +13,7 @@ namespace IQvia.TweetsService.TweetsClient
             this.Tweets = new List<Tweet>();
         }
 
-        public async Task<IEnumerable<Tweet>> List()
+        public async Task<IEnumerable<Tweet>> List(DateTime startDate, DateTime endDate)
         {
             return await Task.Run(() =>
             {

@@ -17,7 +17,7 @@ namespace IQvia.TweetsService.TweetsClient
             this.URL = url;
         }
 
-        public async Task<IEnumerable<Tweet>> List()
+        public async Task<IEnumerable<Tweet>> List(DateTime startDate, DateTime endDate)
         {
             List<Tweet> tweets = null;
 
@@ -27,7 +27,12 @@ namespace IQvia.TweetsService.TweetsClient
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await httpClient.GetAsync("/api/v1/Tweets");
+                UriBuilder builder = new UriBuilder(string.Format("{0}/api/v1/Tweets",URL))
+                {
+                    Query = String.Format("startDate={0}&endDate={1}", startDate.ToString(), endDate.ToString())
+                };
+
+                HttpResponseMessage response = await httpClient.GetAsync(builder.Uri);
 
                 if (response.IsSuccessStatusCode)
                 {

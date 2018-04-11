@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using Xunit;
 
 
@@ -27,12 +26,21 @@ namespace IQVia.TweetsService.Tests.Integration
         [Fact]
         public async void TestTweetGet()
         {
-            var getResponse = await testClient.GetAsync("/tweets");
+            DateTime startDate = new DateTime(2016, 01, 01, 0, 0, 0, 0, DateTimeKind.Utc);
+            DateTime endDate = new DateTime(2017, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc);
+
+            UriBuilder builder = new UriBuilder("http://localhost/Tweets")
+            {
+                Query = String.Format("startDate={0}&endDate={1}", startDate.ToString(), endDate.ToString())
+            };
+
+            var getResponse = await testClient.GetAsync(builder.Uri);
             getResponse.EnsureSuccessStatusCode();
 
             string raw = await getResponse.Content.ReadAsStringAsync();
             List<Tweet> tweets = JsonConvert.DeserializeObject<List<Tweet>>(raw);
             Assert.NotNull(tweets);
+            Assert.Equal(100,tweets.Count);
         }
     }
 }
