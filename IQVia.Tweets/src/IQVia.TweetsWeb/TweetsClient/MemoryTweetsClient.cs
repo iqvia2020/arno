@@ -20,14 +20,5 @@ namespace IQVia.TweetsWeb.TweetsClient
                 return Tweets;
             });
         }
-
-        public void Add(Tweet newTweet)
-        {
-            if (newTweet == null) return;
-            if (!Tweets.Exists(tweet => String.Equals(tweet.Id, newTweet.Id, StringComparison.OrdinalIgnoreCase)))
-            {
-                Tweets.Add(newTweet);
-            }
-        }
     }
 }

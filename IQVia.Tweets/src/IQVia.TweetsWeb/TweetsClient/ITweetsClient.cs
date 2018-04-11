@@ -8,6 +8,5 @@ namespace IQVia.TweetsWeb.TweetsClient
     public interface ITweetsClient
     {
         Task<IEnumerable<Tweet>> List(DateTime startDate, DateTime endDate);
-        void Add(Tweet tweet);
     }
 }

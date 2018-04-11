@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace IQVia.TweetsWeb
 {
@@ -38,7 +39,7 @@ namespace IQVia.TweetsWeb
             var locationUrl = Configuration.GetSection("location:url").Value;
             logger.LogInformation("Using {0} for location service URL.", locationUrl);
             services.AddSingleton<ITweetsClient>(
-                new HttpTweetsClient(locationUrl));
+                new HttpTweetsClient(locationUrl, TimeSpan.TicksPerDay));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,15 +48,7 @@ namespace IQVia.TweetsWeb
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
+            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
