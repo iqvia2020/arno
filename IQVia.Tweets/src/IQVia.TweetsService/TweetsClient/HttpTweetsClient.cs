@@ -19,26 +19,50 @@ namespace IQvia.TweetsService.TweetsClient
 
         public async Task<IEnumerable<Tweet>> List(DateTime startDate, DateTime endDate)
         {
-            List<Tweet> tweets = null;
+            List<Tweet> tweets = new List<Tweet>();
+            Boolean allGood = true;
+            TimeSpan interval = endDate.Subtract(startDate);
 
+            long ts = (long)interval.Divide(new TimeSpan(TimeSpan.TicksPerDay));
             using (var httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = new Uri(this.URL);
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                UriBuilder builder = new UriBuilder(string.Format("{0}/api/v1/Tweets",URL))
+                DateTime tstart = startDate;
+                DateTime tend = startDate.AddTicks(TimeSpan.TicksPerDay);
+                
+                while (tend <= endDate)
                 {
-                    Query = String.Format("startDate={0}&endDate={1}", startDate.ToString(), endDate.ToString())
-                };
+                    UriBuilder builder = new UriBuilder(string.Format("{0}/api/v1/Tweets", URL))
+                    {
+                        Query = String.Format("startDate={0}&endDate={1}", tstart.ToString(), tend.ToString())
+                    };
 
-                HttpResponseMessage response = await httpClient.GetAsync(builder.Uri);
+                    HttpResponseMessage response = await httpClient.GetAsync(builder.Uri);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    string json = await response.Content.ReadAsStringAsync();
-                    tweets = JsonConvert.DeserializeObject<List<Tweet>>(json);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+                        List<Tweet> newTweets = JsonConvert.DeserializeObject<List<Tweet>>(json);
+                        if (newTweets.Count == 100) allGood = false; //TODO
+                        if (newTweets != null && newTweets.Count > 0) {
+                            newTweets.ForEach(newTweet =>
+                            {
+                                if (tweets.Count == 0) tweets.AddRange(newTweets);
+                                else if (tweets.Exists(existingTweet => !String.Equals(existingTweet.Id, newTweet.Id, StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    tweets.Add(newTweet);
+                                }
+                            });
+                            
+                        }
+                    }
+                    tstart = tend;
+                    tend = tstart.AddTicks(TimeSpan.TicksPerDay);
                 }
+               
             }
 
             return tweets;

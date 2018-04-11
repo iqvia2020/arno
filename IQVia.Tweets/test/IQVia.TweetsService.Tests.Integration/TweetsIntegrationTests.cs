@@ -40,7 +40,7 @@ namespace IQVia.TweetsService.Tests.Integration
             string raw = await getResponse.Content.ReadAsStringAsync();
             List<Tweet> tweets = JsonConvert.DeserializeObject<List<Tweet>>(raw);
             Assert.NotNull(tweets);
-            Assert.Equal(100,tweets.Count);
+            Assert.Equal(11699,tweets.Count);
         }
     }
 }
