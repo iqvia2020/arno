@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IQVia.TweetsWeb.Models;
 using Microsoft.AspNetCore.Mvc;
-using IQVia.TweetsWeb.Models;
+using System.Diagnostics;
 
 namespace IQVia.TweetsWeb.Controllers
 {

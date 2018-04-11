@@ -1,13 +1,10 @@
-﻿using Xunit;
-using System.Collections.Generic;
-//using IQvia.TweetsService;
-using Microsoft.AspNetCore.Mvc;
-//using IQvia.TweetsService.Models;
-//using IQvia.TweetsService.TweetsClient;
-using System;
-using IQVia.TweetsWeb.TweetsClient;
+﻿using IQVia.TweetsWeb.Controllers;
 using IQVia.TweetsWeb.Models;
-using IQVia.TweetsWeb.Controllers;
+using IQVia.TweetsWeb.TweetsClient;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using Xunit;
 
 namespace IQVia.TweetsService.Tests
 {

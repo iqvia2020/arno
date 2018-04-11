@@ -1,8 +1,6 @@
-﻿using IQVia.TweetsWeb.Models;
-using IQVia.TweetsWeb.TweetsClient;
+﻿using IQVia.TweetsWeb.TweetsClient;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IQVia.TweetsWeb.Controllers

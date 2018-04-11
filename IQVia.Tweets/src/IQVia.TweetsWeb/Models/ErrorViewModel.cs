@@ -1,5 +1,3 @@
-using System;
-
 namespace IQVia.TweetsWeb.Models
 {
     public class ErrorViewModel

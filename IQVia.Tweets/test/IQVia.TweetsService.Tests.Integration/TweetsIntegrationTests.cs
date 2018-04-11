@@ -1,5 +1,3 @@
-//using IQvia.TweetsService;
-//using IQvia.TweetsService.Models;
 using IQVia.TweetsWeb;
 using IQVia.TweetsWeb.Models;
 using Microsoft.AspNetCore.Hosting;
