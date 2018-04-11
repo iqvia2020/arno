@@ -4,7 +4,7 @@ build:
   steps: 
     - script:
         name: restore
-        cwd:  IQVia.Tweets/src/IQVia.TweetsWeb/
+        cwd: IQVia.Tweets/src/IQVia.TweetsWeb/
         code: |
           dotnet restore
     - script:
