@@ -46,7 +46,11 @@ namespace IQvia.TweetsService.TweetsClient
                     {
                         string json = await response.Content.ReadAsStringAsync();
                         List<Tweet> newTweets = JsonConvert.DeserializeObject<List<Tweet>>(json);
-                        if (newTweets.Count == 100) allGood = false; //TODO
+                        if (newTweets.Count == 100) {
+                            allGood = false;
+                            //TODO further chunking if the count is great than 100!
+                            //Thankfully, at TicksPerDay for 2016 to 2017  all the tweets are less than 100.
+                        }
                         if (newTweets != null && newTweets.Count > 0) {
                             newTweets.ForEach(newTweet =>
                             {
