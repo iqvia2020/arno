@@ -33,20 +33,10 @@ build:
         code: |
           dotnet test  
     - script:
-        name: integration-test-restore
-        cwd:  IQVia.Tweets/test/IQVia.TweetsService.Tests.Integration/
-        code: |
-          dotnet restore  
-     - script:
-        name: integration-test-build
-        cwd:  IQVia.Tweets/test/IQVia.TweetsService.Tests.Integration/
-        code: |
-          dotnet build 
-     - script:
-        name: integration-test-run
+        name: integrationtest-restore
         cwd: IQVia.Tweets/test/IQVia.TweetsService.Tests.Integration/
         code: |
-          dotnet test
+          dotnet restore  
     - script:
         name: copy binary
         cwd: IQVia.Tweets/test/IQVia.TweetsService.Tests/
